@@ -1,13 +1,7 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
-const url = import.meta.env.VITE_SUPABASE_URL
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const url = import.meta.env.VITE_SUPABASE_URL as string | undefined
+const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
 
-export const cloud: SupabaseClient | null = url && anonKey ? createClient(url, anonKey) : null
-export const cloudConfigured = Boolean(cloud)
-
-export type CloudProject = {
-  id: string
-  name: string
-  updated_at: string
-}
+export const supabase = url && anonKey ? createClient(url, anonKey) : null
+export const cloudConfigured = Boolean(supabase)
